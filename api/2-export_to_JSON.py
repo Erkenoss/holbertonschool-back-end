@@ -37,7 +37,7 @@ def to_do(employee_ID):
         json_path = f"{employee_ID}.json"
         with open(json_path, 'w') as jsonfile:
             data = {
-                "USER_ID": [
+                f"{employee_ID}": [
                     {
                         "task": task["title"],
                         "completed": task["completed"],
@@ -46,7 +46,7 @@ def to_do(employee_ID):
                     for task in todos_data
                 ]
             }
-            json.dump(data, jsonfile, indent=2)
+            json.dump(data, jsonfile)
 
 
 if __name__ == "__main__":
