@@ -28,7 +28,7 @@ def to_do(employee_ID):
     employee_data = employee_response.json()
 
     if employee_response.status_code == 200:
-        employee_name = employee_data.get('name')
+        employee_name = employee_data.get('username')
 
     todos_response = requests.get(todos_url)
     todos_data = todos_response.json()
