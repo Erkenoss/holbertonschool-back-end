@@ -46,8 +46,6 @@ def to_do_all_employees():
         with open(json_path, 'w') as json_file:
             json.dump(all_employees_data, json_file, indent=2)
 
-        print(f"JSON file '{json_path}' created successfully.")
-
 
 if __name__ == "__main__":
     to_do_all_employees()
