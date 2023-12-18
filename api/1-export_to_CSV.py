@@ -39,8 +39,15 @@ def to_do(employee_ID):
 
         csv_path = f"{employee_ID}.csv"
         with open(csv_path, 'w', newline='') as csvfile:
-            fieldnames = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE']
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames, quoting=csv.QUOTE_NONNUMERIC)
+            fieldnames = [
+                'USER_ID',
+                'USERNAME',
+                'TASK_COMPLETED_STATUS',
+                'TASK_TITLE'
+                ]
+            writer = csv.DictWriter(csvfile,
+                                    fieldnames=fieldnames,
+                                    quoting=csv.QUOTE_NONNUMERIC)
 
             writer.writeheader()
 
