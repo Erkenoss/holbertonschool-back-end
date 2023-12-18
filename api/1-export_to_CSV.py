@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """Gather data from an API for a given employee
 ID and display TODO list progress."""
+import csv
 import requests
 import sys
-import csv
 
 
 def to_do(employee_ID):
