@@ -49,8 +49,6 @@ def to_do(employee_ID):
                                     fieldnames=fieldnames,
                                     quoting=csv.QUOTE_NONNUMERIC)
 
-            writer.writeheader()
-
             for task in todos_data:
                 writer.writerow({
                     'USER_ID': str(employee_ID),
