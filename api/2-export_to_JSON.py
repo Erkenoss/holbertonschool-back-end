@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """Gather data from an API for a given employee
 ID and display TODO list progress. Export data to JSON."""
+import json
 import requests
 import sys
-import json
 
 
 def to_do(employee_ID):
@@ -34,20 +34,22 @@ def to_do(employee_ID):
     todos_data = todos_response.json()
 
     if todos_response.status_code == 200:
-        json_path = f"{employee_ID}.json"
-        with open(json_path, 'w') as jsonfile:
-            data = {
-                f"{employee_ID}": [
-                    {
-                        "task": task["title"],
-                        "completed": task["completed"],
-                        "username": employee_name
-                    }
-                    for task in todos_data
-                ]
-            }
-            json.dump(data, jsonfile)
+        total_tasks = len(todos_data)
+        completed_tasks = 0
+    for task in todos_data:
+        completed_tasks += task['completed']
 
+    employee_tasks = []
+    for task in todos_data:
+        employee_tasks.append({
+            "task": task['title'],
+            "completed": task['completed'],
+            "username": employee_name
+        })
+
+    json_path = f"{employee_ID}.json"
+    with open(json_path, 'w') as json_file:
+        json.dump({str(employee_ID): employee_tasks}, json_file)
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
