@@ -47,15 +47,17 @@ def to_do(employee_ID):
                 ]
             writer = csv.DictWriter(csvfile,
                                     fieldnames=fieldnames,
-                                    quoting=csv.QUOTE_NONNUMERIC)
+                                    quoting=csv.QUOTE_ALL)
 
             for task in todos_data:
                 writer.writerow({
-                    'USER_ID': str(employee_ID),
+                    'USER_ID': employee_ID,
                     'USERNAME': employee_name,
                     'TASK_COMPLETED_STATUS': task['completed'],
                     'TASK_TITLE': task['title']
                 })
+
+        print(f"Data exported to {csv_filename}")
 
 
 if __name__ == "__main__":
