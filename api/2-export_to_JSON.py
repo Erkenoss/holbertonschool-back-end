@@ -34,29 +34,24 @@ def to_do(employee_ID):
     todos_data = todos_response.json()
 
     if todos_response.status_code == 200:
-        total_tasks = len(todos_data)
-        completed_tasks = 0
-
         json_path = f"{employee_ID}.json"
         with open(json_path, 'w') as jsonfile:
             data = {
-                'USER_ID': employee_ID,
-                'USERNAME': employee_name,
-                'TASKS': [
+                "USER_ID": [
                     {
-                        'TASK_COMPLETED_STATUS': task['completed'],
-                        'TASK_TITLE': task['title']
+                        "task": task["title"],
+                        "completed": task["completed"],
+                        "username": employee_name
                     }
                     for task in todos_data
                 ]
             }
-
-            json.dump(data, jsonfile)
+            json.dump(data, jsonfile, indent=2)
 
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("error")
+        print("Usage: python script.py <employee_id>")
         sys.exit(1)
 
     employee_id = int(sys.argv[1])
