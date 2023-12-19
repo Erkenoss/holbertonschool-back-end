@@ -57,8 +57,6 @@ def to_do(employee_ID):
                     'TASK_TITLE': task['title']
                 })
 
-        print(f"Data exported to {csv_filename}")
-
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
